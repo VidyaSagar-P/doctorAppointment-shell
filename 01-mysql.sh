@@ -35,8 +35,6 @@ echo "Script started executing at: $(date)" | tee -a $LOG_FILE
 
 CHECK_ROOT
 
-mkdir -p $LOG_FOLDER
-
 dnf list installed mysql &>> $LOG_FILE
 if [ $? -ne 0 ]
 then

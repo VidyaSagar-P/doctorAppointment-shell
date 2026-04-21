@@ -10,14 +10,14 @@ SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
 TIME_STAMP=$(date +%Y-%m-%d-%H-%M-%S)
 LOG_FILE="$LOG_FOLDER/$SCRIPT_NAME-$TIME_STAMP.log"
 
-mkdir -p $LOG_FOLDER
+# mkdir -p $LOG_FOLDER
 
 USERID=$(id -u)
 
 CHECK_ROOT(){
-    if [ $? -ne 0 ]
+    if [ $USERID -ne 0 ]
     then
-        echo -e "Please proceed with the $Y root privileges..$N" | tee -a $LOG_FILE
+        echo -e "Please proceed with the $Y root privileges..$N" 
         exit 1
     fi
 }

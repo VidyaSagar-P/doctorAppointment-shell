@@ -62,7 +62,8 @@ curl -L -o /tmp/doctorapp.zip https://jyo1994-vs-workspace.s3.us-east-1.amazonaw
 VALIDATE $? "Downloading backend application code"
 
 cd /app
-rm -rf /app/* /app/.* 2>/dev/null
+rm -rf /app/*
+# rm -rf /app/* /app/.* 2>/dev/null
 unzip /tmp/doctorapp.zip &>> LOG_FILE
 VALIDATE $? "Extracting code"
 

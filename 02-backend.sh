@@ -58,14 +58,13 @@ fi
 mkdir -p /app
 VALIDATE $? "Creating /app directory"
 
-curl -L -o /tmp/doctorapp.zip https://jyo1994-vs-workspace.s3.us-east-1.amazonaws.com/DoctorAppointment-BE-v1.zip &>> LOG_FILE
+curl -L -o /tmp/doctorapp.zip https://jyo1994-vs-workspace.s3.us-east-1.amazonaws.com/hospital-be.zip &>> LOG_FILE
 VALIDATE $? "Downloading backend application code"
 
-rm -rf /app/*
-
 cd /app
-
+rm -rf /app/*
 unzip /tmp/doctorapp.zip &>> LOG_FILE
+VALIDATE $? "Extracting code"
 
 cp /home/ec2-user/doctorAppointment-shell/doctor.service /etc/systemd/system/doctor.service
 VALIDATE $? "Copied"

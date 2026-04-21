@@ -54,7 +54,7 @@ VALIDATE $? "Start Nginx"
 
 rm -rf /usr/share/nginx/html/*
 
-curl -o /tmp/doctor-appointment.zip https://jyo1994-vs-workspace.s3.us-east-1.amazonaws.com/doctorAppointment-index.zip
+curl -o /tmp/doctor-appointment.zip https://jyo1994-vs-workspace.s3.us-east-1.amazonaws.com/doctorAppointment-index.zip &>> LOG_FILE
 cd /usr/share/nginx/html
 unzip /tmp/doctor-appointment.zip &>>$LOG_FILE
 VALIDATE $? "Extract frontend code"

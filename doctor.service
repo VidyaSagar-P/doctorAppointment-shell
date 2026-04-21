@@ -6,7 +6,7 @@ User=doctor
 Environment=DB_HOST=doctor-mysqld.bavs.space    
 Environment=DB_USERNAME=doctor                  
 Environment=DB_PASSWORD=Doctor@123            
-Environment=APP_CORS_ALLOWED_ORIGINS=http://doctor.bavs.space   
+Environment=APP_CORS_ALLOWED_ORIGINS=http://doctorappointment.bavs.space/ 
 ExecStart=/bin/java -jar /app/doctorapp.jar
 SyslogIdentifier=doctor
 

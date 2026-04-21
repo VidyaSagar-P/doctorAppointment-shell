@@ -58,6 +58,7 @@ if [ $? -ne 0 ]
 then
     echo -e "Mysql root password not configured, setting now" | tee -a $LOG_FILE
     mysql_secure_installation --set-root-pass Doctor@1
+    VALIDATE $? "Mysql root password configured"
 else
     echo -e "Mysql root password already configured..$Y SKIPPING $N" | tee -a $LOG_FILE
 fi

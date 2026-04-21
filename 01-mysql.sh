@@ -10,7 +10,7 @@ SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
 TIME_STAMP=$(date +%Y-%m-%d-%H-%M-%S)
 LOG_FILE="$LOG_FOLDER/$SCRIPT_NAME-$TIME_STAMP.log"
 
-# mkdir -p $LOG_FOLDER
+mkdir -p $LOG_FOLDER
 
 USERID=$(id -u)
 
@@ -31,7 +31,7 @@ VALIDATE(){
     fi
 }
 
-echo "Script started executing at: $(date)" 
+echo "Script started executing at: $(date)" | tee -a $LOG_FILE
 
 CHECK_ROOT
 

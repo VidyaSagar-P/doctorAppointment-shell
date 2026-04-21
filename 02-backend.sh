@@ -45,14 +45,14 @@ else
     echo -e "maven is already $G installed $N" | tee -a $LOG_FILE
 fi
 
-id doctor
+id doctor &>> $LOG_FILE
 if [ $? -ne 0 ]
 then
     echo -e "User::doctor not available..$Y creating now $N"
     useradd --system --home /app --shell /sbin/nologin --comment "doctor system user" doctor
     VALIDATE $? "User creationn"
 else
-    echo -e "User::doctor as already $G created $N"
+    echo -e "User::doctor as already created $G SKIPPING $N"
 fi
 
 mkdir -p /app
@@ -61,11 +61,14 @@ VALIDATE $? "Creating /app directory"
 curl -L -o /tmp/doctorapp.zip https://jyo1994-vs-workspace.s3.us-east-1.amazonaws.com/DoctorAppointment-BE-v1.zip &>> LOG_FILE
 VALIDATE $? "Downloading backend application code"
 
-cd /app
 rm -rf /app/*
+
+cd /app
+
 unzip /tmp/doctorapp.zip &>> LOG_FILE
 
 cp /home/ec2-user/doctorAppointment-shell/doctor.service /etc/systemd/system/doctor.service
+VALIDATE $? "Copied"
 
 # load the data before running backend
 dnf list installed mysql &>> $LOG_FILE

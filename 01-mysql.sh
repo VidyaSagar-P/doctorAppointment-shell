@@ -6,7 +6,7 @@ Y="\e[33m"
 N="\e[0m"
 
 LOG_FOLDER="/var/log/doctor-appointment"
-SCRIPT_NAME=$($0 | cut -d "." -f1)
+SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
 TIME_STAMP=$(date +%Y-%m-%d-%H-%M-%S)
 LOG_FILE="$LOG_FOLDER/$SCRIPT_NAME-$TIME_STAMP.log"
 
@@ -31,12 +31,11 @@ VALIDATE(){
     fi
 }
 
-USAGE(){
-    echo "USAGE::$Y sudo sh 16-redirectors.sh package1 package2..$N" | tee -a $LOG_FILE
-    exit 1
-}
+echo "Script started executing at: $(date)" 
 
 CHECK_ROOT
+
+mkdir -p $LOG_FOLDER
 
 dnf list installed mysql &>> $LOG_FILE
 if [ $? -ne 0 ]
